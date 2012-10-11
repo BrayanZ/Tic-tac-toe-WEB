@@ -6,11 +6,10 @@ function send_move(row, column, board)
   move.column = column;
   move.board = board;
   move.mark = "X";
-  move._method = "PUT";
   $.ajax({
     type: "PUT",
     data: move,
-    url: "/move",
+    url: "/game",
     success: function(data){
       alert(data);
     },
