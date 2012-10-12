@@ -16,6 +16,5 @@
 
 (defroutes game-controller
            (GET "/game" [] (init_game))
-           (PUT "/move" {params :params} (move (:board params) [(:row params) (:column params)] (:mark params)))
-           (GET "/about" [] (render-template "about"))
+           (PUT "/game" {params :params} (move (:board params) [(:row params) (:column params)] (:mark params)))
            )
