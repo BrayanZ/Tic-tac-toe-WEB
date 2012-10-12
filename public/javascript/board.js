@@ -27,5 +27,5 @@ jQuery(document).ready(function($){
     var row_num = $(".table tr").index(row);
     var col_num = row.find("td").index(column);
     send_move(row_num, col_num, board);
-  })
+  });
 })
