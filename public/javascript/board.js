@@ -4,14 +4,15 @@ function send_move(row, column, board)
   var move = {};
   move.row = row;
   move.column = column;
-  move.board = board;
+  move.board = JSON.stringify(board);
   move.mark = "X";
   $.ajax({
-    type: "PUT",
+    type: "POST",
     data: move,
     url: "/game",
     success: function(data){
-      alert(data);
+      alert($(data).find(".tablero").html());
+      $(".tablero").html($(data).find(".tablero").html());
     },
     error: function(e){
       alert("error " + e);

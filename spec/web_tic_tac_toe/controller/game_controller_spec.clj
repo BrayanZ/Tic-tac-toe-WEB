@@ -16,14 +16,9 @@
         (should= "new" @rendered-template)))
 
   (it "redirects to the post action"
-      (let [result (request :put "/move" :params {:row 1 :column 2 :board (create_board) :mark "X"})]
+      (let [result (do-post "/game" :params {:row "1" :column "2" :board "[\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \"]" :mark "X"})]
         (should= 200 (:status result))
         (should= "new" @rendered-template)))
-
-  (it "redirects to the about page"
-      (let [result (do-get "/about")]
-        (should= 200 (:status result))
-        (should= "about" @rendered-template)))
 )
 
 (run-specs)
