@@ -1,6 +1,6 @@
 (ns web-tic-tac-toe.helper.game-helper
   (:require [tic-tac-toe.core :refer [create_board human_move]]
-            [clojure.string :refer [split]]))
+            [clojure.string :refer [split replace]]))
 
 (defn parseJsonToVector [json_board]
   (drop 1 (split json_board #"\,|\[|\]")))
@@ -12,11 +12,11 @@
       (empty? board)
         new_board
       :else
-        (recur (rest board) 
+        (recur (rest board)
                (conj new_board 
                      (if (= (first board) "\" \"") 
-                       nil 
-                       (first board)))))))
+                       nil
+                       (replace (first board) #"\"" "")))))))
 
 (defn getValidBoardFromJson [json_board]
   (let [flatBoard (replaceSpacesForNils (parseJsonToVector json_board))]

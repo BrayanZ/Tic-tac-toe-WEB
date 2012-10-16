@@ -21,7 +21,7 @@
         (recur (rest board) 
                (conj
                  acc 
-                 (if (nil? cell) "' '" (str "'" cell "'"))))))))
+                 (if (nil? cell) "' '" cell )))))))
 
 (defn parse_board [board]
   (str "[" (apply str (interpose ", " (change_nil board))) "]"))

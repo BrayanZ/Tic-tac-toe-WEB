@@ -14,7 +14,7 @@
       (should= "[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']"
                (parse_board (create_board))))
   (it "parses the board to a friendly format"
-      (should= "[' ', ' ', 'O', ' ', ' ', ' ', ' ', 'X', ' ']"
+      (should= "[' ', ' ', O, ' ', ' ', ' ', ' ', X, ' ']"
                (parse_board [[nil nil "O"][nil nil nil][nil "X" nil]]))))
 
 (run-specs)
