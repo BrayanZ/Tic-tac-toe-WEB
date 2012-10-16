@@ -7,8 +7,6 @@
             [web-tic-tac-toe.helper.game-helper :refer :all]
             [web-tic-tac-toe.view.view-helpers :refer :all]))
 
-(def game_board (atom (create_board)))
-
 (defn- init_game []
   (let [board (create_board)]
     (render-template "new" :board board :current_player "Jugador 1")))

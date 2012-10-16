@@ -16,8 +16,8 @@
      [:a {:class "brand" :href "/"} "Tic-Tac-Toe"]
      [:div {:class "nav-collapse collapse"}
       [:ul {:class "nav"}
-       [:li [:a {:href "game"} "Juego"]]]]]]]
-
+       [:li [:a {:href "game"} "Juego"]
+       [:li [:a {:href "about"} "Acerca de"]] ]]]]]]
   [:div {:class "container"}
    (eval (:template-body joodo.views/*view-context*))]
   ]]
