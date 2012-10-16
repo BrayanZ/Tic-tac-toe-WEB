@@ -17,9 +17,9 @@
   (let [board (applyMove board position mark)]
     (cond 
       (winner? board)
-      (render-template "new" :board board :message "<h1>Ganador el Jugador 1</h1>" )
+        (render-template "new" :board board :message "<h1>Ganador el Jugador 1</h1>" )
       (full_board? board)
-      (render-template "new" :board board :message "<h1>Felicidades, ha obtenido un empate</h1>")
+        (render-template "new" :board board :message "<h1>Felicidades, ha obtenido un empate</h1>")
       :else
       (let [board (IA_move board "O")]
         (cond
