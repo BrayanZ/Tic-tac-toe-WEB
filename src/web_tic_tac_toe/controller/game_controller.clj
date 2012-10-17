@@ -1,7 +1,7 @@
 (ns web-tic-tac-toe.controller.game-controller 
   (:require [compojure.core :refer [GET POST PUT context defroutes]]
             [joodo.views :refer [render-template render-html render-partial]]
-            [tic-tac-toe.core :refer [create_board human_move winner? full_board?]]
+            [tic-tac-toe.core :refer [create_board human_move]]
             [tic-tac-toe.IA :refer [IA_move]]
             [clojure.string :refer [split]]
             [web-tic-tac-toe.interactor.game-interactor :refer :all]
@@ -10,7 +10,7 @@
 (def game_board (atom (create_board)))
 
 (defn- init_game []
-  (let [board (create_board)]
+  (let [board (IA_move (create_board) "O")]
     (render-template "new" :presenter {:board board :message ""})))
 
 (defn- move [board [row column :as position] mark]
