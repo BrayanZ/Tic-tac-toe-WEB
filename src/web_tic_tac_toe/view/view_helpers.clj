@@ -11,7 +11,7 @@
     [:span.board_cell mark]))
 
 (defn- change_nil [board]
-  (loop [board (flatten board) 
+  (loop [board (flatten board)
          acc []]
     (let [cell (first board)]
       (cond 
@@ -25,3 +25,10 @@
 
 (defn parse_board [board]
   (str "[" (apply str (interpose ", " (change_nil board))) "]"))
+
+(defn get_board [view_context]
+  (:board (:presenter view_context)))
+
+(defn get_message [view_context]
+  (:message (:presenter view_context)))
+

@@ -1,5 +1,5 @@
-(ns web-tic-tac-toe.helper.game-helper
-  (:require [tic-tac-toe.core :refer [create_board human_move]]
+(ns web-tic-tac-toe.interactor.game-interactor
+  (:require [tic-tac-toe.core :refer [create_board human_move winner? full_board?]]
             [clojure.string :refer [split replace]]))
 
 (defn parseJsonToVector [json_board]
@@ -13,7 +13,7 @@
         new_board
       :else
         (recur (rest board)
-               (conj new_board 
+               (conj new_board
                      (if (= (first board) "\" \"") 
                        nil
                        (replace (first board) #"\"" "")))))))
@@ -32,3 +32,17 @@
         board (getValidBoardFromJson board)]
     (human_move board position mark))
   )
+
+(defn move_message [board]
+  (let [winner (winner? board)]
+    (cond
+      (= winner "X")
+        "<h1>Ganador el Jugador 1</h1>"
+      (= winner "O")
+        "<h1>Ganador el Jugador 2</h1>"
+      (full_board? board)
+        "<h1>Felicidades, ha obtenido un empate</h1>"
+      :else
+        ""
+      )
+  ))
