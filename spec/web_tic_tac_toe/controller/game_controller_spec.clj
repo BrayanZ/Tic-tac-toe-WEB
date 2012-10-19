@@ -19,6 +19,10 @@
       (let [result (do-post "/game" :params {:row "1" :column "2" :board "[\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \"]" :mark "X"})]
         (should= 200 (:status result))
         (should= "new" @rendered-template)))
+  (it "redirects to the new game page, starting the computer"
+      (let [result (do-get "/game/second")]
+        (should= 200 (:status result))
+        (should= "new" @rendered-template)))
 )
 
 (run-specs)

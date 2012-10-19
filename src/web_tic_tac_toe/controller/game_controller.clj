@@ -10,6 +10,10 @@
 (def game_board (atom (create_board)))
 
 (defn- init_game []
+  (let [board (create_board)]
+    (render-template "new" :presenter {:board board :message ""})))
+
+(defn- init_game_IA []
   (let [board (IA_move (create_board) "O")]
     (render-template "new" :presenter {:board board :message ""})))
 
@@ -23,5 +27,7 @@
         (render-template "new" :presenter {:board board :message message})))))
 
 (defroutes game-controller
-           (GET "/game" [] (init_game))
+           (context "/game" []
+                    (GET "/" [] (init_game))
+                    (GET "/second" [] (init_game_IA)))
            (POST "/game" {params :params} (move (:board params) [(:row params) (:column params)] (:mark params))))
